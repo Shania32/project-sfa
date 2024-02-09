@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Input dan Laporan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulir Input Pencapaian Harian</h1>
+    <form id="inputForm">
+        <label for="sfa">SFA:</label>
+        <input type="text" id="sfa" name="sfa" required>
+        <br>
+        <label for="tgl">Tanggal:</label>
+        <input type="date" id="tgl" name="tgl" required>
+        <br>
+        <label for="jc">JC:</label>
+        <input type="number" id="jc" name="jc" required>
+        <br>
+        <label for="ec">EC:</label>
+        <input type="number" id="ec" name="ec" required>
+        <br>
+        <label for="dailyOutlet">Daily Outlet:</label>
+        <input type="text" id="dailyOutlet" name="dailyOutlet" required>
+        <br>
+        <label for="targetActualMTDGap">Target/Actual MTD/Gap:</label>
+        <input type="text" id="targetActualMTDGap" name="targetActualMTDGap" required>
+        <br>
+        <label for="sellthruSPRetail">Sellthru SP Retail (%):</label>
+        <input type="number" id="sellthruSPRetail" name="sellthruSPRetail" required>
+        <br>
+        <label for="sellthruSPHD">Sellthru SP HD (Outlet):</label>
+        <input type="text" id="sellthruSPHD" name="sellthruSPHD" required>
+        <br>
+        <label for="sellthruSPLD">Sellthru SP LD (Outlet):</label>
+        <input type="text" id="sellthruSPLD" name="sellthruSPLD" required>
+        <br>
+        <!-- Tambahkan input untuk DL VD TERBARU, NOO, dan OMSET -->
+        <!-- Sesuaikan dengan kebutuhan sesuai dengan template laporan -->
+        <br>
+        <button type="submit">Kirim</button>
+    </form>
+
+    <hr>
+
+    <h1>Laporan Pencapaian Harian</h1>
+    <div id="laporan"></div>
+
+    <script>
+        document.getElementById('inputForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah form untuk dikirimkan secara default
+
+            // Ambil data dari formulir
+            var sfa = document.getElementById('sfa').value;
+            var tgl = document.getElementById('tgl').value;
+            var jc = document.getElementById('jc').value;
+            var ec = document.getElementById('ec').value;
+            var dailyOutlet = document.getElementById('dailyOutlet').value;
+            var targetActualMTDGap = document.getElementById('targetActualMTDGap').value;
+            var sellthruSPRetail = document.getElementById('sellthruSPRetail').value;
+            var sellthruSPHD = document.getElementById('sellthruSPHD').value;
+            var sellthruSPLD = document.getElementById('sellthruSPLD').value;
+            // Ambil data tambahan sesuai kebutuhan
+
+            // Buat laporan dari data yang dimasukkan
+            var laporan = `
+                <h2>Report SFA TEAM SUB CLUSTER 1.2</h2>
+                <p><strong>SFA:</strong> ${sfa}</p>
+                <p><strong>Tgl:</strong> ${tgl}</p>
+                <h3>JC & EC</h3>
+                <p><strong>Jc:</strong> ${jc}</p>
+                <p><strong>EC:</strong> ${ec}</p>
+                <h3>OP FIT (Min 1 ACT)</h3>
+                <p>Daily : ${dailyOutlet}</p>
+                <p>Target/actual MTD/gap : ${targetActualMTDGap}</p>
+                <h3>PO 1ACT&ACT50K</h3>
+                <p>Daily : ${dailyOutlet}</p>
+                <p>Target/ActualMTD/Gap : ${targetActualMTDGap}</p>
+                <h3>SELLTHRU SP RETAIL (Non OM SGS)</h3>
+                <p>Target/Actual/% : ${sellthruSPRetail}</p>
+                <h3>Sellthru SP HD & LD</h3>
+                <p>High Denom : ${sellthruSPHD}</p>
+                <p>Low Denom : ${sellthruSPLD}</p>
+                <!-- Tambahkan data tambahan sesuai dengan kebutuhan -->
+            `;
+
+            // Tampilkan laporan
+            document.getElementById('laporan').innerHTML = laporan;
+        });
+    </script>
+</body>
+</html>
